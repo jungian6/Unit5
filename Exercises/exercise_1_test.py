@@ -22,14 +22,14 @@ def test_main():
         output = StringIO()
 
         def mock_input(prompt):
-            print(prompt, end='')  # This will be captured in the StringIO object
+            print(prompt, end='')
             return input_values.pop(0)
 
         with patch('builtins.input', mock_input), patch('sys.stdout', output):
             try:
-                main()  # Call unchanged function.
+                main()
             except Exception as e:
-                print(f"Main method failed. {e}")  # This will be captured in the StringIO object
+                print(f"Main method failed. {e}")
 
         actual_output = output.getvalue()
         assert actual_output == expected_output, f"Expected:\n{expected_output}\nGot:\n{actual_output}"
